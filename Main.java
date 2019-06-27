@@ -18,7 +18,8 @@ public class Main {
                 goal[i][j] = Integer.parseInt(numString[i].substring(j, j+1));
             }
         }
-        starter.randomize(goal);
+        starter.randomize(starter.copyGrid(goal));
+        starter.print(goal);
         current = starter.getGrid();
         
 

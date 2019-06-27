@@ -2,7 +2,7 @@ import java.util.Random;
 import java.util.ArrayList;
 
 public class Grid {
-    int[][] grid = new int[9][9];
+    int[][] grid;
 
     private Random r = new Random();
 
@@ -21,17 +21,16 @@ public class Grid {
         } //for(i)
     } //print()
 
-    public void randomize(int[][] board) {
-        this.grid = board;
+    public void randomize(int[][] goal) {
         print(grid);
-        print(board);
+        print(goal);
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
                 if (r.nextInt(2) != 0) this.grid[i][j] = 0;
             }
         }
         print(grid);
-        print(board);
+        print(goal);
     } //randomize()
 
     public void randomFill() {
@@ -56,6 +55,17 @@ public class Grid {
 
     public int[][] getGrid() {
         return grid;
+    }
+
+    public int[][] copyGrid(int[][] grid) {
+        int[][] copy = new int[grid.length][];
+        for(int i = 0; i < grid.length; i++) {
+            copy[i] = new int[grid[i].length];
+            for(int j = 0; j < grid[i].length; j++) {
+                copy[i] = grid[i];
+            }
+        }
+        return copy;
     }
 
 } //Grid
