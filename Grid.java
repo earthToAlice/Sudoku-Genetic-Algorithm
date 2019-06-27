@@ -21,33 +21,31 @@ public class Grid {
         } //for(i)
     } //print()
 
-    public void randomize(int[][] goal) {
-        print(grid);
-        print(goal);
+    public void randomize(int[][] grid) {
+        this.grid = copyGrid(grid);
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                if (r.nextInt(2) != 0) this.grid[i][j] = 0;
+                if (r.nextInt(18) != 0) this.grid[i][j] = 0;
             }
         }
-        print(grid);
-        print(goal);
     } //randomize()
 
     public void randomFill() {
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                if (grid[i][j] == 0) {
-                    grid[i][j] = r.nextInt(9) + 1;
+                if (this.grid[i][j] == 0) {
+                    this.grid[i][j] = r.nextInt(9) + 1;
                 }
             }
         }
     }
 
     public void deleteWrong(int[][] goal) {
+        int[][] goalCopy = copyGrid(goal);
         for (int i = 0; i < 9; i++) {
             for (int j = 0; j < 9; j++) {
-                if (grid[i][j] != goal[i][i]) {
-                    grid[i][j] = 0;
+                if (this.grid[i][j] != goalCopy[i][j]) {
+                    this.grid[i][j] = 0;
                 }
             }
         }
@@ -58,11 +56,10 @@ public class Grid {
     }
 
     public int[][] copyGrid(int[][] grid) {
-        int[][] copy = new int[grid.length][];
+        int[][] copy = new int[9][9];
         for(int i = 0; i < grid.length; i++) {
-            copy[i] = new int[grid[i].length];
             for(int j = 0; j < grid[i].length; j++) {
-                copy[i] = grid[i];
+                copy[i][j] = grid[i][j];
             }
         }
         return copy;
